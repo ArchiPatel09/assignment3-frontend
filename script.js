@@ -2,7 +2,7 @@ const API_BASE = 'https://backend-assignment3-1.onrender.com/api';
 
 let cartItems = [];
 
-// Page navigation
+// page navigation
 function viewCart() {
     document.getElementById('productsPage').classList.remove('active');
     document.getElementById('cartPage').classList.add('active');
@@ -14,7 +14,7 @@ function viewProducts() {
     document.getElementById('productsPage').classList.add('active');
 }
 
-// Load products from backend
+// loading products from backend
 async function loadProducts() {
     try {
         const response = await fetch(`${API_BASE}/products`);
@@ -25,7 +25,7 @@ async function loadProducts() {
     }
 }
 
-// Display products in grid
+// displaying products in grid
 function displayProducts(products) {
     const grid = document.getElementById('productsGrid');
     grid.innerHTML = '';
@@ -47,7 +47,7 @@ function displayProducts(products) {
     });
 }
 
-// Cart functionality
+// add to cart button logic implementation
 async function addToCart(productId, productName, price, image) {
     try {
         const response = await fetch(`${API_BASE}/cart`, {
@@ -73,6 +73,7 @@ async function addToCart(productId, productName, price, image) {
     }
 }
 
+// loading cart
 async function loadCart() {
     try {
         const response = await fetch(`${API_BASE}/cart`);
@@ -84,6 +85,7 @@ async function loadCart() {
     }
 }
 
+// displaying cart items 
 function displayCartItems() {
     const cartContainer = document.getElementById('cartItems');
     const totalAmount = document.getElementById('totalAmount');
@@ -112,6 +114,7 @@ function displayCartItems() {
     totalAmount.textContent = total.toFixed(2);
 }
 
+// remove from the cart button logic
 async function removeFromCart(cartItemId) {
     try {
         const response = await fetch(`${API_BASE}/cart/${cartItemId}`, {
@@ -126,6 +129,7 @@ async function removeFromCart(cartItemId) {
     }
 }
 
+// empty cart button logic
 async function emptyCart() {
     try {
         const response = await fetch(`${API_BASE}/cart/emptycart`, {
@@ -140,6 +144,7 @@ async function emptyCart() {
     }
 }
 
+// updating the cart items count
 async function updateCartCount() {
     try {
         const response = await fetch(`${API_BASE}/cart`);
@@ -151,7 +156,7 @@ async function updateCartCount() {
     }
 }
 
-// Initialize the application
+// initializing the application
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
     updateCartCount();
